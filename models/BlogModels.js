@@ -22,6 +22,13 @@ const Blogku = dbKu.define(
         notEmpty: true,
       },
     },
+    url: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,

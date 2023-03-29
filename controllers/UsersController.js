@@ -43,6 +43,11 @@ export const createUserBlog = async (req, res) => {
       .status(400)
       .json({ msg: "password dan confirm password not match" });
 
+  if (firstName.length < 3 || lastName.length < 3)
+    return res
+      .status(400)
+      .json({ msg: "First Name or Last Name must be at least 3 characters" });
+
   if (password.length < 3)
     return res
       .status(400)
@@ -104,6 +109,10 @@ export const UpdateUserBlog = async (req, res) => {
     return res
       .status(400)
       .json({ msg: "Password must be at least 3 characters" });
+  if (firstName.length < 3 || lastName.length < 3)
+    return res
+      .status(400)
+      .json({ msg: "First Name or Last Name must be at least 3 characters" });
 
   const hashpassword = await argon2.hash(password);
 
