@@ -1,5 +1,6 @@
 // import argon2 from "argon2";
-import * as argon2 from "argon2";
+// import * as argon2 from "argon2";
+import bcrypt from "bcrypt";
 
 import Userku from "../models/UsersModels.js";
 
@@ -53,7 +54,9 @@ export const createUserBlog = async (req, res) => {
       .status(400)
       .json({ msg: "Password must be at least 3 characters" });
 
-  const hashpassword = await argon2.hash(password);
+  // const hashpassword = await argon2.hash(password);
+  const salt = await bcrypt.genSalt();
+  const hashpassword = await bcrypt.hash(password, salt);
 
   const validation_email = await Userku.findOne({
     where: {
@@ -113,8 +116,8 @@ export const UpdateUserBlog = async (req, res) => {
     return res
       .status(400)
       .json({ msg: "First Name or Last Name must be at least 3 characters" });
-
-  const hashpassword = await argon2.hash(password);
+  const salt = await bcrypt.genSalt();
+  const hashpassword = await bcrypt.hash(password, salt);
 
   try {
     await Userku.update(

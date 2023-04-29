@@ -1,5 +1,6 @@
 import Userku from "../models/UsersModels.js";
-import * as argon2 from "argon2";
+// import * as argon2 from "argon2";
+import bcrypt from "bcrypt";
 
 export const LoginBlogKu = async (req, res) => {
   const myuser = await Userku.findOne({
@@ -8,7 +9,8 @@ export const LoginBlogKu = async (req, res) => {
     },
   });
   if (!myuser) return res.status(404).json({ msg: "User Not Found" });
-  const verifyPass = await argon2.verify(myuser.password, req.body.password);
+  // const verifyPass = await argon2.verify(myuser.password, req.body.password);
+  const verifyPass = await bcrypt.compare(req.body.password, myuser.password);
   if (!verifyPass)
     return res.status(400).json({ msg: "your password is Wrong !!!" });
   req.session.userBlogId = myuser.uuid;
