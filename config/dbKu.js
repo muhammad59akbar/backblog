@@ -2,11 +2,11 @@ import { Sequelize } from "sequelize";
 import mysql2 from "mysql2";
 
 const dbKu = new Sequelize(
-  "b8v3wjmisnumx1mfwfnk",
-  "uk7sb6yuq373qlv5",
-  "An4peiZdtZid0VQ8fsV8",
+  process.env.DB_NAME,
+  process.env.DB_USERNAME,
+  process.env.DB_PASSWORD,
   {
-    host: "b8v3wjmisnumx1mfwfnk-mysql.services.clever-cloud.com",
+    host: process.env.DB_HOST,
     dialect: "mysql",
     dialectModule: mysql2,
   }
