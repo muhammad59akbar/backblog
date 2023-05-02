@@ -1,6 +1,6 @@
 // import argon2 from "argon2";
 // import * as argon2 from "argon2";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 import Userku from "../models/UsersModels.js";
 

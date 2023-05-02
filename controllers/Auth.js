@@ -1,6 +1,6 @@
 import Userku from "../models/UsersModels.js";
 // import * as argon2 from "argon2";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export const LoginBlogKu = async (req, res) => {
   const myuser = await Userku.findOne({
