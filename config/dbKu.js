@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize";
+import mysql2 from "mysql2";
 
 const dbKu = new Sequelize(
   process.env.DB_NAME || "b8v3wjmisnumx1mfwfnk",
@@ -9,6 +10,7 @@ const dbKu = new Sequelize(
       process.env.DB_HOST ||
       "b8v3wjmisnumx1mfwfnk-mysql.services.clever-cloud.com",
     dialect: "mysql",
+    dialectModule: mysql2,
   }
 );
 
